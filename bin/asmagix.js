@@ -54,7 +54,7 @@ function invoke(env) {
             // Run the emulator
             break;
         case 'init':
-            // Scaffold project
+            core.init(env.cwd);
             break;
         default:
             // Bad task name
