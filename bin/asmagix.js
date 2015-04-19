@@ -6,6 +6,7 @@ var argv = require('minimist')(process.argv.slice(2));
 var chalk = require('chalk');
 var core = require('../lib');
 var config = require('../package.json');
+var path = require('path');
 
 var asmagix = new Liftoff({
     name: 'asmagix',
@@ -16,7 +17,8 @@ var asmagix = new Liftoff({
 
 // Determine task name
 var task;
-if (argv._.length != 1) {
+var rom = null;
+if (argv._.length > 2) {
     if (argv._.length === 0) {
         task = 'build';
     } else {
@@ -25,6 +27,9 @@ if (argv._.length != 1) {
     }
 } else {
     task = argv._[0];
+    if (argv._.length == 2) {
+        rom = argv._[1];
+    }
 }
 
 asmagix.launch({
@@ -49,6 +54,20 @@ function invoke(env) {
     }
 
     var asmagixfile = require(env.configPath);
+    var romPath;
+
+    if (asmagixfile.roms.constructor === Object) {
+        romPath = asmagixfile.roms[rom || 'default'];
+    } else if (asmagixfile.roms.constructor === String) {
+        romPath = asmagixfile.roms;
+    }
+
+    if (romPath) {
+        romPath = path.resolve(env.cwd, romPath);
+    } else {
+        core.log(chalk.red('Invalid ROM specified ' + rom));
+        process.exit(1);
+    }
 
     switch (task) {
         case 'build':
@@ -56,7 +75,7 @@ function invoke(env) {
             break;
         case 'dev':
             // Watch for changes and build
-            core.watch(asmagixfile, env.cwd);
+            core.watch(asmagixfile, romPath, env.cwd);
             break;
         case 'run':
             // Run the emulator

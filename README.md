@@ -15,7 +15,9 @@ ASMAGIX is a command line tool assembly hackers can use to quickly modify code i
 ````json
 {
     "src": "./src",
-    "roms": "./roms",
+    "roms": {
+        "default": "./roms/bpre.gba",
+    },
     "build": "./build",
 }
 ````
