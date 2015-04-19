@@ -19,7 +19,8 @@ if (argv._.length != 1) {
     if (argv._.length === 0) {
         task = 'build';
     } else {
-
+        help();
+        process.exit(1);
     }
 } else {
     task = argv._[0];
@@ -31,5 +32,12 @@ asmagix.launch({
 }, invoke);
 
 function invoke(env) {
-    console.log()
+    core.log(task);
+}
+
+/**
+ * Print CLI help
+ */
+function help() {
+
 }
