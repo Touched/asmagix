@@ -44,12 +44,16 @@ function invoke(env) {
 
     switch (task) {
         case 'build':
+            // Create patches
             break;
         case 'dev':
+            // Watch for changes and build
             break;
         case 'run':
+            // Run the emulator
             break;
         case 'init':
+            // Scaffold project
             break;
         default:
             help();
