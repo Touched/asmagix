@@ -17,10 +17,5 @@ ASMAGIX is a command line tool assembly hackers can use to quickly modify code i
     "src": "./src",
     "roms": "./roms",
     "build": "./build",
-    "toolchain": {
-        "as": "arm-none-eabi-as",
-        "objcopy": "arm-none-eabi-objcopy"
-    },
-    "emulator": "vba-sdl-h"
 }
 ````
