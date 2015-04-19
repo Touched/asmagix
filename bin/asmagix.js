@@ -43,12 +43,20 @@ function invoke(env) {
         process.exit(0);
     }
 
+    if (!env.configPath) {
+        core.log(chalk.red('No asmagixfile found'));
+        process.exit(1);
+    }
+
+    var asmagixfile = require(env.configPath);
+
     switch (task) {
         case 'build':
             // Create patches
             break;
         case 'dev':
             // Watch for changes and build
+            core.watch(asmagixfile, env.cwd);
             break;
         case 'run':
             // Run the emulator
