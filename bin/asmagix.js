@@ -5,6 +5,7 @@ var Liftoff = require('liftoff');
 var argv = require('minimist')(process.argv.slice(2));
 var chalk = require('chalk');
 var core = require('../lib');
+var config = require('../package.json');
 
 var asmagix = new Liftoff({
     name: 'asmagix',
@@ -56,6 +57,7 @@ function invoke(env) {
             // Scaffold project
             break;
         default:
+            // Bad task name
             help();
             process.exit(1);
     }
@@ -66,5 +68,5 @@ function help() {
 }
 
 function version() {
-
+    console.log(config.name, 'version', config.version);
 }
