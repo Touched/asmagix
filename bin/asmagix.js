@@ -32,12 +32,35 @@ asmagix.launch({
 }, invoke);
 
 function invoke(env) {
-    core.log(task);
+    if (argv.help) {
+        help();
+        process.exit(0);
+    }
+
+    if (argv.version) {
+        version();
+        process.exit(0);
+    }
+
+    switch (task) {
+        case 'build':
+            break;
+        case 'dev':
+            break;
+        case 'run':
+            break;
+        case 'init':
+            break;
+        default:
+            help();
+            process.exit(1);
+    }
 }
 
-/**
- * Print CLI help
- */
 function help() {
+    console.log('help');
+}
+
+function version() {
 
 }
