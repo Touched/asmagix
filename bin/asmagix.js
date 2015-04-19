@@ -70,8 +70,12 @@ function invoke(env) {
     }
 
     switch (task) {
-        case 'build':
+        case 'dist':
             // Create patches
+            break;
+        case 'build':
+            // Build once
+            core.build(asmagixfile, romPath, env.cwd);
             break;
         case 'dev':
             // Watch for changes and build
