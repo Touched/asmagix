@@ -9,3 +9,18 @@ ASMAGIX is a command line tool assembly hackers can use to quickly modify code i
 - Scaffolds your ASM project
 - Development mode watches for changes to your ASM files and automatically assemble and insert
 - Start at emulator automatically
+
+## Config
+
+````json
+{
+    "src": "./src",
+    "roms": "./roms",
+    "build": "./build",
+    "toolchain": {
+        "as": "arm-none-eabi-as",
+        "objcopy": "arm-none-eabi-objcopy"
+    },
+    "emulator": "vba-sdl-h"
+}
+````
