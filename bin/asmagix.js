@@ -32,12 +32,12 @@ asmagix.launch({
 }, invoke);
 
 function invoke(env) {
-    if (argv.help) {
+    if (argv.h || argv.help) {
         help();
         process.exit(0);
     }
 
-    if (argv.version) {
+    if (argv.v || argv.version) {
         version();
         process.exit(0);
     }
