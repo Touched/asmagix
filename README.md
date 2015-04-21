@@ -47,5 +47,31 @@ Navigate into the directory containing your asmagixfile and run:
 | dev    | Watches source files for changes and runs `build` for your target ROM if it sees anything. |
 | init   | Creates a basic project for you. You are responsible for populating the ROMS directory. |
 
+## Directives
+At the very top of each file in your source directory, you need to place comment directives in order to tell ASMAGIX what to do with the file. Comment directives look like
+
+````asm
+@@directiveName parameters
+
+@ ...
+````
+
+### ignore
+`@@ignore` - The ignore directive takes no parameters and simply tells ASMAGIX to skip processing this file entirely.
+
+### action
+`@@action NAME PARAMETERS` - The action directive is a collection of directives that control the way the file is inserted.
+
+#### hook
+`@@action hook OFFSET REGISTER MODE` - The hook action takes three parameters - an offset to place the hook code at, a (low) register number to use in this code (default 0) and the mode: "arm" or "thumb" (default is "thumb").
+Examples:
+
+- `@@action hook 0xDEADBEEF 0 arm` - select ARM mode
+- `@@action hook 0xDEADBEEF 3` - select r3 to hook in
+- `@@action hook 0xDEADBEEF` - defaults to r0 and thumb mode
+
+#### insert
+`@@action insert` - The insert action takes no parameters and simply inserts the code in free space. If you don't specify an action, ASMAGIX will default to this one.
+
 ## Direction
 This is still in its early stages. I may eventually make some sort of package manager feature that allows easy installing of projects like this.
