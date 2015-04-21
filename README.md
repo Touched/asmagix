@@ -56,6 +56,8 @@ At the very top of each file in your source directory, you need to place comment
 @ ...
 ````
 
+Directives are allowed parameters. Directives that are just integers can be replaced with ASM constants (defined with `.equ` or similar) and ASMAGIX will automatically replace them.
+
 ### ignore
 `@@ignore` - The ignore directive takes no parameters and simply tells ASMAGIX to skip processing this file entirely.
 
