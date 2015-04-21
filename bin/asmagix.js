@@ -57,7 +57,16 @@ function invoke(env) {
     var romPath;
 
     if (asmagixfile.roms.constructor === Object) {
-        romPath = asmagixfile.roms[rom || 'default'];
+        if (rom) {
+            romPath = asmagixfile.roms[rom];
+        } else {
+            var def = asmagixfile['default'];
+            if (!def) {
+                core.log(chalk.red('No default rom selected.'));
+                process.exit(1);
+            }
+            romPath = asmagixfile.roms[def];
+        }
     } else if (asmagixfile.roms.constructor === String) {
         romPath = asmagixfile.roms;
     }
