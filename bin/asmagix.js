@@ -84,11 +84,11 @@ function invoke(env) {
             break;
         case 'build':
             // Build once
-            core.build(asmagixfile, romPath, env.cwd);
+            core.build(asmagixfile, romName, romPath, env.cwd);
             break;
         case 'dev':
             // Watch for changes and build
-            core.watch(asmagixfile, romPath, env.cwd);
+            core.watch(asmagixfile, romName, romPath, env.cwd);
             break;
         case 'run':
             // Run the emulator
