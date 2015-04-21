@@ -54,21 +54,21 @@ function invoke(env) {
     }
 
     var asmagixfile = require(env.configPath);
-    var romPath;
+    var romPath, romName = null;
 
     if (asmagixfile.roms.constructor === Object) {
         if (rom) {
             romPath = asmagixfile.roms[rom];
+            romName = rom;
         } else {
             var def = asmagixfile['default'];
             if (!def) {
                 core.log(chalk.red('No default rom selected.'));
                 process.exit(1);
             }
+            romName = def;
             romPath = asmagixfile.roms[def];
         }
-    } else if (asmagixfile.roms.constructor === String) {
-        romPath = asmagixfile.roms;
     }
 
     if (romPath) {
